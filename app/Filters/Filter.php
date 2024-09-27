@@ -33,7 +33,6 @@ abstract class Filter
         foreach ($this->allowedOperatorsFields as $param => $operators) {
             $queryOperator = $request->query($param);
             if($queryOperator){
-                var_dump($queryOperator);
                 foreach ($queryOperator as $operator => $value) {
                     if (!in_array($operator, $operators)) {
                         throw new Exception("{$param} does not have {$operator} operator");
@@ -44,7 +43,7 @@ abstract class Filter
                             explode(',', str_replace(['[', ']'], ['', ''], $value)),
                             $value
                         ];
-                    }else{
+                    } else {
                         $where[] = [
                             $param,
                             $this->traslateOperatorsFields[$operator],
